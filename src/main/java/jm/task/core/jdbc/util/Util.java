@@ -1,5 +1,6 @@
 package jm.task.core.jdbc.util;
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -10,9 +11,23 @@ public class Util {
     private static final String USER_NAME = "root";
     private static final String PASSWORD = "root";
 
-    public Connection getConnection() throws SQLException {
-//      Class.forName("com.mysql.cj.jdbc.Driver");
-//      Прочитал что с JDBC 4 не надо  явно загружать драйвер, или всё таки надо по правилам?
-        return DriverManager.getConnection(URL, USER_NAME, PASSWORD);
+    public static Connection getConnection() {
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(URL, USER_NAME, PASSWORD);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return connection;
+    }
+
+    public static void closeConnection(Connection connection) {
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

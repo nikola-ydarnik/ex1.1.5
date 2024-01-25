@@ -30,10 +30,15 @@ public class Main {
         /*Получение всех User из базы и вывод в консоль (должен быть переопределен toString в классе User)*/
         System.out.println(userService.getAllUsers());
 
+        userService.removeUserById(3);
+        System.out.println(userService.getAllUsers());
+
         /*Очистка таблицы User(ов)*/
         userService.cleanUsersTable();
+        System.out.println(userService.getAllUsers());
 
         /*Удаление таблицы*/
         userService.dropUsersTable();
+
     }
 }
